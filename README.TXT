@@ -22,7 +22,8 @@ Follow [@strebel](http://twitter.com/strebel) and check out Page.ly for sweet 2 
 
 # [Instructions here](http://blog.page.ly/multiedit-plugin/)
 == Changelog ==
-
+= .9c =
+* Better check for edit page and custom template before running 
 = .9b =
 * Fixed dumb oversight that borked 0.9, plugin can now find the .js and .css file.
 = .9 =
