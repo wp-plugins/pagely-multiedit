@@ -90,7 +90,7 @@ function multieditAdminEditor() {
 
 function testforMultiMeta() {
 	global $post;
-	if (isset($_GET['post']) && isset($_GET['edit'])) {
+	if (isset($_GET['post']) && isset($_GET['edit']) && !empty($post->page_template)) {
 		$meta = has_meta($post->ID);
 		//print_r($meta);
 
