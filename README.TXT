@@ -3,6 +3,8 @@ Contributors: Joshua Strebel
 Tags: admin,formatting,pages,page,cms,multiedit, blocks, editable regions, tinymce, custom fields, page.ly
 Requires at least: 2.9
 Tested up to: 2.9.1
+Stable Tag: .9b
+
 
 MultiEdit adds tinyMCE editable "blocks" to page templates. 
 == Description ==
