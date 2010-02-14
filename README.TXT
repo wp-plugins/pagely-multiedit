@@ -13,7 +13,7 @@ See Instructions and Usage Examples here: [Page.ly MultiEdit plugin](http://blog
 
 Brought to you by: [Page.ly WordPress Hosting](http://page.ly)
 
-Follow [(@strebel)](http://twitter.com/strebel)
+Follow [@strebel](http://twitter.com/strebel) and check out Page.ly for sweet 2 minute setup of WordPress Websites.
 
 
 == Installation ==
@@ -22,6 +22,6 @@ Follow [(@strebel)](http://twitter.com/strebel)
 == Changelog ==
 
 = .9b =
-* Fixed dumb oversight.. plugin can now find the .js and .css file
+* Fixed dumb oversight that borked 0.9, plugin can now find the .js and .css file.
 = .9 =
 * Ported from an [old plugin](http://saint-rebel.com/2008/09/26/multiedit-region-wordpress-plugin/) we wrote.
