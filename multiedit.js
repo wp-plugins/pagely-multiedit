@@ -111,5 +111,6 @@ jQuery(document).ready( function() {
 	jQuery('table#list-table tr#multishow span').live( 'click' , function (){
 		jQuery('table#list-table tbody tr.mevalue').toggle();
 	});
+	
 	initMultiEdit();
 });

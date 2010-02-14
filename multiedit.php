@@ -3,7 +3,7 @@
 Plugin Name: Page.ly MultiEdit
 Plugin URI: http://blog.page.ly/multiedit-plugin
 Description: Multi Editable Region Support for Page Templates
-Version: 0.9
+Version: 0.9b
 Author: Joshua Strebel
 Author URI: http://page.ly
 
@@ -38,10 +38,10 @@ Author URI: http://page.ly
 |                                                                    |
 \--------------------------------------------------------------------/
 */
+define ('PLUGINASSETS',WP_PLUGIN_URL.'/'.dirname(plugin_basename(__FILE__)).'');
 function multiedit() {
 	add_action ('edit_page_form', 'multieditAdminEditor', 1);
 	add_action ('edit_form_advanced', 'multieditAdminEditor', 1);
-
 	add_action ('admin_head', 'testforMultiMeta', 1);
 
 	if (in_array(basename($_SERVER['PHP_SELF']),array('page-new.php','page.php')) ) {
@@ -51,6 +51,7 @@ function multiedit() {
 }
 
 $GLOBALS['multiEditDisplay'] = false;
+
 // api for templates
 function multieditDisplay($index) {
 	if ($GLOBALS['multiEditDisplay'] === false) {
@@ -65,33 +66,9 @@ function multieditDisplay($index) {
 }
 
 
-/*function multieditRegionsForType($type) {
-
-	$regions = multieditCurrentThemeRegionMap();
-
-	if (isset($regions[$type])) {
-		return $regions[$type];
-	}
-	return array();
-}
-*/
-
-/*function multieditCurrentThemeRegionMap() {
-        $current_theme = get_current_theme();
-
-        $themes = get_themes();
-
-	$themeDir = $themes[$current_theme]['Template Dir'];
-
-	$regions = include ABSPATH.$themeDir.'/regions.php';
-
-	return $regions;
-}
-*/
-
 function multieditAdminHeader() {
-	echo '<link rel="stylesheet" type="text/css" href="' . get_settings('siteurl'). '/wp-content/plugins/multiedit/multiedit.css" />';	
-	echo '<script type="text/javascript" src="' . get_settings('siteurl'). '/wp-content/plugins/multiedit/multiedit.js" ></script>';	
+	echo '<link rel="stylesheet" type="text/css" href="' . PLUGINASSETS .'/multiedit.css" />';	
+	echo '<script type="text/javascript" src="' .  PLUGINASSETS .'/multiedit.js" ></script>';	
 }
 
 function multieditAdminEditor() {
@@ -144,9 +121,7 @@ function testforMultiMeta() {
 			}
 		}
 				 
-	}
-		//update_post_meta($post->ID, 'multiedit_'.$region, '');
-		 
+	}		 
 
 }
 
