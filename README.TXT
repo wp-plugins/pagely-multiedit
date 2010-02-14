@@ -1,5 +1,5 @@
 === Page.ly MultiEdit ===
-Contributors: Joshua Strebel [(@strebel)](http://twitter.com/strebel)
+Contributors: Joshua Strebel 
 Tags: multiedit, blocks, editable regions, tinymce, custom fields, page.ly
 Requires at least: 2.9
 Tested up to: 2.9.1
@@ -12,6 +12,9 @@ One thing I always wished WP would do better is allow for multiple editable cont
 See Instructions and Usage Examples here: [Page.ly MultiEdit plugin](http://blog.page.ly/multiedit-plugin/)
 
 Brought to you by: [Page.ly WordPress Hosting](http://page.ly)
+
+Follow [(@strebel)](http://twitter.com/strebel)
+
 
 == Installation ==
 
