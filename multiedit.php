@@ -98,7 +98,6 @@ function testforMultiMeta() {
 	$templatefile = locate_template(array($post->page_template));	
 	$template_data = implode('', array_slice(file($templatefile), 0, 10));	
 	$matches = '';
-	$added = false;
 	//check for multiedit declaration
 	if (preg_match( '|MultiEdit:(.*)$|mi', $template_data, $matches)) {
 		 $multi = explode(',',_cleanup_header_comment($matches[1]));

@@ -1,26 +1,57 @@
+/*
+/--------------------------------------------------------------------\
+|                                                                    |  
+| License: GPL                                                       |
+|                                                                    |
+| Page.ly MultiEdit- Adds editable Blocks to page templates in       |
+| WordPress                                                          |
+| Copyright (C) 2010, Joshua Strebel,                                |
+| http://page.ly                                                     |
+| All rights reserved.                                               |
+|                                                                    |
+| This program is free software; you can redistribute it and/or      |
+| modify it under the terms of the GNU General Public License        |
+| as published by the Free Software Foundation; either version 2     |
+| of the License, or (at your option) any later version.             |
+|                                                                    |
+| This program is distributed in the hope that it will be useful,    |
+| but WITHOUT ANY WARRANTY; without even the implied warranty of     |
+| MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the      |
+| GNU General Public License for more details.                       |
+|                                                                    |
+| You should have received a copy of the GNU General Public License  |
+| along with this program; if not, write to the                      |
+| Free Software Foundation, Inc.                                     |
+| 51 Franklin Street, Fifth Floor                                    |
+| Boston, MA  02110-1301, USA                                        |   
+|                                                                    |
+\--------------------------------------------------------------------/
+*/
 
 function initMultiEdit() {
 	if(jQuery('#multiEditHidden span').length > 1) {
 		jQuery('#multiEditControl').append(jQuery('#multiEditHidden span'));
 		jQuery('#postdivrich').before(jQuery('#multiEditControl'));
 		jQuery('#postdivrich').attr('rel','default');
-		
-		// hide the custome fields
-		
+				
 		//shorten the span text and hide the custom fields
 		jQuery('#multiEditControl span').each( function(index) {
 			var oldstr = jQuery(this).html();
 			var newstr = oldstr.split('_');	
-			var metaid = jQuery(this).attr('rel');
 			if (newstr[1]) {
 				 jQuery(this).html(newstr[1]);
 			}
 			
-			// find and hide the tr for custom field
+			var metaid = jQuery(this).attr('rel');
+			// find and hide the tr for multiedit custom fields
 			jQuery('tr#meta-'+metaid).addClass('mevalue').hide();
 		});
+		
 		jQuery('table#list-table tbody').append('<tr id="multishow"><td class="left"><span>Show/Hide MultiEdit fields</span></td><td></td></tr>');
+	
 	} else {
+		// if not multiedit regions defined.. hide the divs... 
+		// This should probably be done on the php side
 		jQuery('#multiEditHidden').hide();
 		jQuery('#multiEditControl').hide();
 	}
@@ -34,7 +65,6 @@ function getTinyMCEContent() {
 function toggleTinyMCE(newcontent) {
 	var iframeRef = jQuery('#content_ifr');
 	jQuery(iframeRef).contents().find('body').html(newcontent);
-
 }
 
 function copyDefaultToFreezer(content) {
@@ -42,7 +72,6 @@ function copyDefaultToFreezer(content) {
 }
 function getFreezer() {
 	return jQuery('#multiEditFreezer').html();
-
 }
 function triggerSelected(idref,newid) {
 	jQuery('span.multieditbutton').removeClass('selected');
@@ -104,13 +133,17 @@ jQuery(document).ready( function() {
 	// and save the meta fields before wordpress posts the form
 	
 	jQuery('form#post').submit( function() {	
+		// reverts tinymce back to default thereby saving and open tab
 		jQuery('span#default.multieditbutton').click();
+		// this clicks the update button (saves them) on the all custom fields
 		jQuery('#postcustomstuff input.updatemeta').click();
 	});
 	
+	// show or hide the multiedit custom field table rows
 	jQuery('table#list-table tr#multishow span').live( 'click' , function (){
 		jQuery('table#list-table tbody tr.mevalue').toggle();
 	});
 	
+	// start
 	initMultiEdit();
 });
