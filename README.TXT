@@ -21,5 +21,7 @@ Follow [(@strebel)](http://twitter.com/strebel)
 # [Instructions here](http://blog.page.ly/multiedit-plugin/)
 == Changelog ==
 
+= .9b =
+* Fixed dumb oversight.. plugin can now find the .js and .css file
 = .9 =
 * Ported from an [old plugin](http://saint-rebel.com/2008/09/26/multiedit-region-wordpress-plugin/) we wrote.
