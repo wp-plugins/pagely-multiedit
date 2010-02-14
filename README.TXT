@@ -15,21 +15,8 @@ Brought to you by: [Page.ly WordPress Hosting](http://page.ly)
 
 == Installation ==
 
-# Upload the MultiEdit plugin to your blog/website
-# Create a custom page template and declare MultiEdit regions as a comma separated list under Template Name
-'<?php
-/*
-Template Name: CustomPage
-MultiEdit: Right,Bottom,Left
-*/
-?>'
-
-# Also in the custom page template, decide where to show the MultiEdit content '<?php multieditDisplay('Bottom'); ?>'
-# Edit or Create a new WordPress Page, Select your custom template. Refresh the page.
-# You will now see tabs above the TinyMCE that allow you to add content to the region block
-# Save the page and preview your results.
-
+# [Instructions here](http://blog.page.ly/multiedit-plugin/)
 == Changelog ==
 
 = .9 =
-* Ported from an old plugin we wrote: http://saint-rebel.com/2008/09/26/multiedit-region-wordpress-plugin/
+* Ported from an [old plugin](http://saint-rebel.com/2008/09/26/multiedit-region-wordpress-plugin/) we wrote.
