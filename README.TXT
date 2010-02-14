@@ -16,12 +16,13 @@ Brought to you by: [Page.ly WordPress Hosting](http://page.ly)
 
 # Upload the MultiEdit plugin to your blog/website
 # Create a custom page template and declare MultiEdit regions as a comma separated list under Template Name
-<code><?php
+<?php
 /*
 Template Name: CustomPage
 MultiEdit: Right,Bottom,Left
 */
-?></code>
+?>
+
 # Also in the custom page template, decide where to show the MultiEdit content <code><?php multieditDisplay('Bottom'); ?></code>
 # Edit or Create a new WordPress Page, Select your custom template. Refresh the page.
 # You will now see tabs above the TinyMCE that allow you to add content to the region block
