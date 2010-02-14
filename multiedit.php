@@ -90,37 +90,37 @@ function multieditAdminEditor() {
 
 function testforMultiMeta() {
 	global $post;
-	////if (isset($_GET['post'])) {
-	$meta = has_meta($post->ID);
-	//print_r($meta);
+	if (isset($_GET['post']) && isset($_GET['edit'])) {
+		$meta = has_meta($post->ID);
+		//print_r($meta);
 
-	// get current page template
-	$templatefile = locate_template(array($post->page_template));	
-	$template_data = implode('', array_slice(file($templatefile), 0, 10));	
-	$matches = '';
-	//check for multiedit declaration
-	if (preg_match( '|MultiEdit:(.*)$|mi', $template_data, $matches)) {
-		 $multi = explode(',',_cleanup_header_comment($matches[1]));
-		 
-		 //	echo $region;
-		 
-		 foreach($meta as $k=>$v) {
-		 	 foreach($multi as $region) {
-		 	  	if (in_array('multiedit_'.$region,$v)) {
-		 	  		$present[$region] = true;
-		 	  	}
-		 	 }
-		 }
-		 
-		foreach($multi as $region) {
-			if(!isset($present[$region])) {
-					update_post_meta($post->ID, 'multiedit_'.$region, '');
-
+		// get current page template
+		$templatefile = locate_template(array($post->page_template));	
+		$template_data = implode('', array_slice(file($templatefile), 0, 10));	
+		$matches = '';
+		//check for multiedit declaration
+		if (preg_match( '|MultiEdit:(.*)$|mi', $template_data, $matches)) {
+			 $multi = explode(',',_cleanup_header_comment($matches[1]));
+			 
+			 //	echo $region;
+			 
+			 foreach($meta as $k=>$v) {
+			 	 foreach($multi as $region) {
+			 	  	if (in_array('multiedit_'.$region,$v)) {
+			 	  		$present[$region] = true;
+			 	  	}
+			 	 }
+			 }
+			 
+			foreach($multi as $region) {
+				if(!isset($present[$region])) {
+						update_post_meta($post->ID, 'multiedit_'.$region, '');
+	
+				}
 			}
-		}
-				 
-	}		 
-
+					 
+		}		 
+	}
 }
 
 multiedit();
