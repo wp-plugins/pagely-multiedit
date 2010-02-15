@@ -60,10 +60,16 @@ function initMultiEdit() {
 		jQuery('#multiEditControl span').show();
 		jQuery('#multiEditControl em').remove();
 	});
+	
 	jQuery('a#edButtonHTML').click(function(){
 		jQuery('#multiEditControl span').hide();
 		jQuery('#multiEditControl').append('<em>Enable Visual Editing to use MultiEdit</em>');	
 	});
+	
+	//alert(jQuery('#postdivrich').html());
+	if(jQuery('#postdivrich').html() == null) {
+		jQuery('#multiEditControl').hide();
+	}
 }
 
 function getTinyMCEContent() {

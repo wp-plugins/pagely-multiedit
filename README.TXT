@@ -22,6 +22,8 @@ Follow [@strebel](http://twitter.com/strebel) and check out Page.ly for sweet 2 
 
 # [Instructions here](http://blog.page.ly/multiedit-plugin/)
 == Changelog ==
+= .9e =
+* Added disabled message if tinymce is not being used.. for now
 = .9d =
 * Mo betta 
 = .9c =
