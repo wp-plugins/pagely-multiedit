@@ -55,6 +55,15 @@ function initMultiEdit() {
 		jQuery('#multiEditHidden').hide();
 		jQuery('#multiEditControl').hide();
 	}
+	
+	jQuery('a#edButtonPreview').click(function(){
+		jQuery('#multiEditControl span').show();
+		jQuery('#multiEditControl em').remove();
+	});
+	jQuery('a#edButtonHTML').click(function(){
+		jQuery('#multiEditControl span').hide();
+		jQuery('#multiEditControl').append('<em>Enable Visual Editing to use MultiEdit</em>');	
+	});
 }
 
 function getTinyMCEContent() {
@@ -65,6 +74,8 @@ function getTinyMCEContent() {
 function toggleTinyMCE(newcontent) {
 	var iframeRef = jQuery('#content_ifr');
 	jQuery(iframeRef).contents().find('body').html(newcontent);
+	jQuery('#editorcontainer textarea').text(newcontent);
+
 }
 
 function copyDefaultToFreezer(content) {

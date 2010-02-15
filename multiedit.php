@@ -3,7 +3,7 @@
 Plugin Name: Page.ly MultiEdit
 Plugin URI: http://blog.page.ly/multiedit-plugin
 Description: Multi-Editable Region Support for Page Templates
-Version: 0.9d
+Version: 0.9e
 Author: Joshua Strebel
 Author URI: http://page.ly
 */
@@ -39,12 +39,12 @@ Author URI: http://page.ly
 */
 define ('PLUGINASSETS',WP_PLUGIN_URL.'/'.dirname(plugin_basename(__FILE__)).'');
 function multiedit() {
-	add_action ('edit_page_form', 'multieditAdminEditor', 1);
-	add_action ('edit_form_advanced', 'multieditAdminEditor', 1);
-	add_action ('admin_head', 'testforMultiMeta', 1);
-
-	if (in_array(basename($_SERVER['PHP_SELF']),array('page-new.php','page.php')) ) {
+	
+	if (in_array(basename($_SERVER['PHP_SELF']),array('page.php')) && $_GET['action'] == 'edit') {
 		add_action ('admin_head', 'multieditAdminHeader', 1);
+		add_action ('admin_head', 'testforMultiMeta', 1);
+		add_action ('edit_page_form', 'multieditAdminEditor', 1);
+		add_action ('edit_form_advanced', 'multieditAdminEditor', 1);
 		//add_action ('save_post', 'multieditSavePost');
 	}
 }
@@ -91,10 +91,11 @@ function multieditAdminEditor() {
 function testforMultiMeta() {
 
 	global $post;
-	if (isset($_GET['post']) && isset($_GET['edit'])) {
+	//echo $_GET['post'];
+	if (isset($_GET['post']) && $_GET['action'] == 'edit') {
 		$meta = has_meta($post->ID);
 		//print_r($meta);
-
+		
 		// get current page template
 		$templatefile = locate_template(array($post->page_template));	
 		$template_data = implode('', array_slice(file($templatefile), 0, 10));	
