@@ -48,6 +48,22 @@ function initMultiEdit() {
 		});
 		
 		jQuery('table#list-table tbody').append('<tr id="multishow"><td class="left"><span>Show/Hide MultiEdit fields</span></td><td></td></tr>');
+		
+		jQuery('a#edButtonPreview').click(function(){
+			jQuery('#multiEditControl span').show();
+			jQuery('#multiEditControl em').remove();
+		});
+	
+		jQuery('a#edButtonHTML').click(function(){
+			jQuery('#multiEditControl span').hide();
+			jQuery('#multiEditControl').append('<em>Enable Visual Editing to use MultiEdit</em>');	
+		});
+	
+		//alert(jQuery('#postdivrich').html());
+		if(jQuery('#postdivrich').html() == null) {
+			jQuery('#multiEditControl').hide();
+		}
+
 	
 	} else {
 		// if not multiedit regions defined.. hide the divs... 
@@ -56,20 +72,6 @@ function initMultiEdit() {
 		jQuery('#multiEditControl').hide();
 	}
 	
-	jQuery('a#edButtonPreview').click(function(){
-		jQuery('#multiEditControl span').show();
-		jQuery('#multiEditControl em').remove();
-	});
-	
-	jQuery('a#edButtonHTML').click(function(){
-		jQuery('#multiEditControl span').hide();
-		jQuery('#multiEditControl').append('<em>Enable Visual Editing to use MultiEdit</em>');	
-	});
-	
-	//alert(jQuery('#postdivrich').html());
-	if(jQuery('#postdivrich').html() == null) {
-		jQuery('#multiEditControl').hide();
-	}
 }
 
 function getTinyMCEContent() {
@@ -150,10 +152,12 @@ jQuery(document).ready( function() {
 	// and save the meta fields before wordpress posts the form
 	
 	jQuery('form#post').submit( function() {	
-		// reverts tinymce back to default thereby saving and open tab
-		jQuery('span#default.multieditbutton').click();
-		// this clicks the update button (saves them) on the all custom fields
-		jQuery('#postcustomstuff input.updatemeta').click();
+		if(jQuery('#multiEditHidden span').length > 1) {
+			// reverts tinymce back to default thereby saving and open tab
+			jQuery('span#default.multieditbutton').click();
+			// this clicks the update button (saves them) on the all custom fields
+			jQuery('#postcustomstuff input.updatemeta').click();
+		}
 	});
 	
 	// show or hide the multiedit custom field table rows

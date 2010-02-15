@@ -3,7 +3,7 @@ Contributors: Joshua Strebel
 Tags: admin,formatting,pages,page,cms,multiedit, blocks, editable regions, tinymce, custom fields, page.ly
 Requires at least: 2.9
 Tested up to: 2.9.1
-Stable Tag: 0.9e
+Stable Tag: 0.9f
 
 
 MultiEdit adds tinyMCE editable "blocks" to page templates. 
@@ -22,6 +22,8 @@ Follow [@strebel](http://twitter.com/strebel) and check out Page.ly for sweet 2 
 
 # [Instructions here](http://blog.page.ly/multiedit-plugin/)
 == Changelog ==
+= .9f =
+* Fixed bug that would replace tinymce content before save if no multiedit fields avail.  You deleted or changed content, and hit update page and it would put your old content back in.
 = .9e =
 * Added disabled message if tinymce is not being used.. for now
 = .9d =
