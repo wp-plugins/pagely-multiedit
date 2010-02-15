@@ -152,6 +152,8 @@ jQuery(document).ready( function() {
 	// and save the meta fields before wordpress posts the form
 	
 	jQuery('form#post').submit( function() {	
+		jQuery('span#default.multieditbutton').click();
+
 		if(jQuery('#multiEditHidden span').length > 1) {
 			// reverts tinymce back to default thereby saving and open tab
 			jQuery('span#default.multieditbutton').click();
