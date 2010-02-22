@@ -3,7 +3,7 @@
 Plugin Name: Page.ly MultiEdit
 Plugin URI: http://blog.page.ly/multiedit-plugin
 Description: Multi-Editable Region Support for Page Templates
-Version: 0.9.1
+Version: 0.9.2
 Author: Joshua Strebel
 Author URI: http://page.ly
 */
@@ -97,7 +97,7 @@ function testforMultiMeta() {
 
 	global $post;
 	//echo $_GET['post'];
-	if (isset($_GET['post']) && $_GET['action'] == 'edit') {
+	if (isset($_GET['post']) && $_GET['action'] == 'edit' && !empty($post->page_template)) {
 		$meta = has_meta($post->ID);
 		//print_r($meta);
 		
