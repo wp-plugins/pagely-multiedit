@@ -3,7 +3,7 @@
 Plugin Name: Page.ly MultiEdit
 Plugin URI: http://blog.page.ly/multiedit-plugin
 Description: Multi-Editable Region Support for Page Templates BTYB. <a href="http://page.ly">Page.ly WordPress Hosting</a>
-Version: 0.9.3
+Version: 0.9.4
 Author: Joshua Strebel
 Author URI: http://page.ly
 */
@@ -84,11 +84,14 @@ function drawMultieditHTML($meta,$presentregions) {
 				if (preg_match('/^multiedit_(.+)/',$item['meta_key'],$matches)) {
 					// lets check regions defined in this template ($presentregions) against those in meta
 					// so we can treat meta values that may be in $post, but not in this template differently
-					//print_r($matches);
+					print_r($matches);
 					$notactive = false;
 					if (!array_key_exists($matches[1],$presentregions)) { $notactive = 'notactive'; $fields[] = $matches[1];}
-					
-					echo "<span class='multieditbutton $notactive' id='hs_$item[meta_key]' rel='$item[meta_id]'>$item[meta_key]</span><input type='hidden' id='hs_$item[meta_key]' name='$item[meta_key]' value=\"".htmlspecialchars($item['meta_value']).'" />';
+					 $mkey = trim($item['meta_key']);
+					 $mval = trim($item['meta_value']);
+					 $mid = trim($item['meta_id']);
+					 $mclean = trim($matches[1]);
+					echo "<span class='multieditbutton $notactive' id='hs_$mkey' rel='$mid'>$mclean</span><input type='hidden' id='hs_$mkey' name='$mkey' value=\"".htmlspecialchars($mval).'" />';
 				
 				}
 			}

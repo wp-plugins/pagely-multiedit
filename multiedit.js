@@ -36,11 +36,11 @@ function initMultiEdit() {
 				
 		//shorten the span text and hide the custom fields
 		jQuery('#multiEditControl span').each( function(index) {
-			var oldstr = jQuery(this).html();
-			var newstr = oldstr.split('_');	
-			if (newstr[1]) {
-				 jQuery(this).html(newstr[1]);
-			}
+			//var oldstr = jQuery(this).html();
+			//var newstr = oldstr.split('_');	
+			//if (newstr[1]) {
+			//	 jQuery(this).html(newstr[1]);
+			//}
 			
 			var metaid = jQuery(this).attr('rel');
 			// find and hide the tr for multiedit custom fields
