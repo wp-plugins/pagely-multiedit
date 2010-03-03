@@ -3,7 +3,7 @@
 Plugin Name: Page.ly MultiEdit
 Plugin URI: http://blog.page.ly/multiedit-plugin
 Description: Multi-Editable Region Support for Page Templates
-Version: 0.9.2
+Version: 0.9.3
 Author: Joshua Strebel
 Author URI: http://page.ly
 */
@@ -37,18 +37,17 @@ Author URI: http://page.ly
 |                                                                    |
 \--------------------------------------------------------------------/
 */
+//error_reporting(E_ALL);
+//ini_set("display_errors", 1); 
+ 
 define ('PLUGINASSETS',WP_PLUGIN_URL.'/'.dirname(plugin_basename(__FILE__)).'');
+
+if (in_array(basename($_SERVER['PHP_SELF']),array('page.php')) && $_GET['action'] == 'edit' ) {
+	add_action('init','multiedit');
+}
+
 function multiedit() {
-	
-	if (in_array(basename($_SERVER['PHP_SELF']),array('page.php')) && $_GET['action'] == 'edit') {
-		
-		
-		add_action ('admin_head', 'multieditAdminHeader', 1);
-		add_action ('admin_head', 'testforMultiMeta', 1);
-		add_action ('edit_page_form', 'multieditAdminEditor', 1);
-		add_action ('edit_form_advanced', 'multieditAdminEditor', 1);
-		//add_action ('save_post', 'multieditSavePost');
-	}
+	add_action ('admin_footer', 'doMultiMeta', 1);	
 }
 
 $GLOBALS['multiEditDisplay'] = false;
@@ -68,70 +67,77 @@ function multieditDisplay($index) {
 
 
 function multieditAdminHeader() {
-	if (testforMultiMeta()) {
-		echo '<script type="text/javascript" src="' .  PLUGINASSETS .'/multiedit.js" ></script>';	
-	}
 	echo '<link rel="stylesheet" type="text/css" href="' . PLUGINASSETS .'/multiedit.css" />';	
-
+	echo '<script type="text/javascript" src="' .  PLUGINASSETS .'/multiedit.js" ></script>';	
 }
 
-function multieditAdminEditor() {
-	global $post;
+function drawMultieditHTML($meta,$presentregions) {
 	echo '<div id="multiEditControl"></div>';
 	echo '<div id="multiEditHidden"><span class="multieditbutton selected" id="default">Main Content</span>';
-	if (isset($_GET['post'])) {
-		$meta = has_meta($_GET['post']);
 
+		//print_r($meta);
+		//print_r($presentregions);
+		
+	// this adds the multiedit tabs that appear above the tinymce editor
 		if (is_array($meta)) {
 			foreach($meta as $item) {
-				if (preg_match('/^multiedit_(.+)/',$item['meta_key'])) {
-					echo "<span class='multieditbutton' id='hs_$item[meta_key]' rel='$item[meta_id]'>$item[meta_key]</span><input type='hidden' id='hs_$item[meta_key]' name='$item[meta_key]' value=\"".htmlspecialchars($item['meta_value']).'" />';
+				if (preg_match('/^multiedit_(.+)/',$item['meta_key'],$matches)) {
+					// lets check regions defined in this template ($presentregions) against those in meta
+					// so we can treat meta values that may be in $post, but not in this template differently
+					//print_r($matches);
+					$notactive = false;
+					if (!array_key_exists($matches[1],$presentregions)) { $notactive = 'notactive'; $fields[] = $matches[1];}
+					
+					echo "<span class='multieditbutton $notactive' id='hs_$item[meta_key]' rel='$item[meta_id]'>$item[meta_key]</span><input type='hidden' id='hs_$item[meta_key]' name='$item[meta_key]' value=\"".htmlspecialchars($item['meta_value']).'" />';
+				
 				}
 			}
+			// show a message if needed
+			if (!empty($fields)) {echo "<div id='nonactive' style='display:none'><p>".implode(', ',$fields)." region(s) are not declared in the template.</p></div>";}
 		}
-	}
+	
 	echo "<div id='multiEditFreezer' style='display:none'>".$post->post_content."</div></div>\n";
 }
 
-function testforMultiMeta() {
+function doMultiMeta() {
 
 	global $post;
-	//echo $_GET['post'];
-	if (isset($_GET['post']) && $_GET['action'] == 'edit' && !empty($post->page_template)) {
-		$meta = has_meta($post->ID);
-		//print_r($meta);
-		
-		// get current page template
-		$templatefile = locate_template(array($post->page_template));	
-		$template_data = implode('', array_slice(file($templatefile), 0, 10));	
-		$matches = '';
-		//check for multiedit declaration
-		if (preg_match( '|MultiEdit:(.*)$|mi', $template_data, $matches)) {
-			 $multi = explode(',',_cleanup_header_comment($matches[1]));
-			 
-			 //	echo $region;
-			 
-			 foreach($meta as $k=>$v) {
-			 	 foreach($multi as $region) {
-			 	  	if (in_array('multiedit_'.$region,$v)) {
-			 	  		$present[$region] = true;
-			 	  	}
-			 	 }
-			 }
-			 
-			foreach($multi as $region) {
-				if(!isset($present[$region])) {
-						update_post_meta($post->ID, 'multiedit_'.$region, '');
-						
+	$meta = has_meta($post->ID);
 	
-				} else {
-					return true;	
-				}
-			}
-					 
-		}	
+	// get current page template
+	$templatefile = locate_template(array($post->page_template));	
+	$template_data = implode('', array_slice(file($templatefile), 0, 10));	
+	$matches = '';
+	
+	//check for multiedit declaration in template
+	if (preg_match( '|MultiEdit:(.*)$|mi', $template_data, $matches)) {
+		 $multi = explode(',',_cleanup_header_comment($matches[1]));
 		 
-	}
+		 // load scripts
+		 multieditAdminHeader();
+		 // WE have multiedit zones, load js and css load
+		 add_action ('edit_page_form', 'multieditAdminEditor', 1);
+		 add_action ('edit_form_advanced', 'multieditAdminEditor', 1);
+		 
+		 //simple var assigment
+		 foreach($meta as $k=>$v) {
+		 	 foreach($multi as $region) {
+		 	  	if (in_array('multiedit_'.$region,$v)) {
+		 	  		$present[$region] = true;
+		 	  	}
+		 	 }
+		 }
+		
+		//draw html
+		drawMultieditHTML($meta,$present);
+
+		// if custom field is not declared yet, create one with update_post_meta 
+		foreach($multi as $region) {
+			if(!isset($present[$region])) {
+					update_post_meta($post->ID, 'multiedit_'.$region, '');
+			} 
+		}		 
+	} // end preg_match
+				 
 }
 
-multiedit();

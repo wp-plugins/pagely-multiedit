@@ -57,8 +57,10 @@
 	background:#fff;
 	border-color: #21759B;
 	padding:6px 10px;
-
-	
+}
+#multiEditControl span.multieditbutton.notactive {
+	background:#ccc;
+	color:#999;
 }
 #multiEditDiv {
    padding: 15px 5px 0 5px;

@@ -63,6 +63,7 @@ function initMultiEdit() {
 		if(jQuery('#postdivrich').html() == null) {
 			jQuery('#multiEditControl').hide();
 		}
+		
 
 	
 	} else {
@@ -167,4 +168,8 @@ jQuery(document).ready( function() {
 	
 	// start
 	initMultiEdit();
+	jQuery('#nonactive').addClass('upgrade fade error');
+	jQuery('#postdivrich').before(jQuery('#nonactive'));
+	jQuery('#nonactive').fadeIn();
+
 });
