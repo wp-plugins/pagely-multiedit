@@ -21,6 +21,9 @@ Follow [@strebel](http://twitter.com/strebel) and check out Page.ly for sweet 2 
 
 # [Instructions here](http://blog.page.ly/multiedit-plugin/)
 == Changelog ==
+= 0.9.5 =
+* force tinymce to visual mode when saving post
+* fixes the bug that main content was being overwritten if saved in html mode
 = 0.9.4 = 
 * added some trim() to a few places.
 = 0.9.3 =

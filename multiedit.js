@@ -153,8 +153,9 @@ jQuery(document).ready( function() {
 	// and save the meta fields before wordpress posts the form
 	
 	jQuery('form#post').submit( function() {	
-
-			// reverts tinymce back to default thereby saving and open tab
+			// force tinymcs visual mode
+			jQuery('a#edButtonPreview').click();
+ 			// reverts tinymce back to default thereby saving and open tab
 			jQuery('span#default.multieditbutton').click();
 			// this clicks the update button (saves them) on the all custom fields
 			jQuery('#postcustomstuff input.updatemeta').click();

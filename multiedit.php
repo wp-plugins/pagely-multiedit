@@ -3,7 +3,7 @@
 Plugin Name: Page.ly MultiEdit
 Plugin URI: http://blog.page.ly/multiedit-plugin
 Description: Multi-Editable Region Support for Page Templates BTYB. <a href="http://page.ly">Page.ly WordPress Hosting</a>
-Version: 0.9.4
+Version: 0.9.5
 Author: Joshua Strebel
 Author URI: http://page.ly
 */
