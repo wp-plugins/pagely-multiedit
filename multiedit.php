@@ -3,7 +3,7 @@
 Plugin Name: Page.ly MultiEdit
 Plugin URI: http://blog.page.ly/multiedit-plugin
 Description: Multi-Editable Region Support for Page Templates BTYB. <a href="http://page.ly">Page.ly WordPress Hosting</a>
-Version: 0.9.6
+Version: 0.9.7
 Author: Joshua Strebel
 Author URI: http://page.ly
 */
@@ -106,16 +106,16 @@ function doMultiMeta() {
 
 	global $post;
 	$meta = has_meta($post->ID);
+
+	// if default template.. assign var to page.php
+	$post->page_template == 'default' ? $post->page_template = 'page.php' : '';
 	
-	// get current page template
 	$templatefile = locate_template(array($post->page_template));	
 	$template_data = implode('', array_slice(file($templatefile), 0, 10));	
 	$matches = '';
-	
 	//check for multiedit declaration in template
 	if (preg_match( '|MultiEdit:(.*)$|mi', $template_data, $matches)) {
 		 $multi = explode(',',_cleanup_header_comment($matches[1]));
-		 
 		 // load scripts
 		 multieditAdminHeader();
 		 // WE have multiedit zones, load js and css load
