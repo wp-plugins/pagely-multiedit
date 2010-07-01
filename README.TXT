@@ -22,7 +22,7 @@ Follow [@strebel](http://twitter.com/strebel) and check out Page.ly for sweet 2 
 # [Instructions here](http://blog.page.ly/multiedit-plugin/)
 == Changelog ==
 = 0.9.7 = 
-Re-assigned $post->page_template to page.php if "default".  Repsects multiedit declartion in header of page.php now. Ramifications possible if using home.php or index.php.. dunno?
+Re-assigned $post->page_template to page.php if "default".  Repsects multiedit declaration in header of page.php now. Still need to publish/update the page a couple times before the multi edit tabs appear above tinymce. I figure this is becuase $post->page_templte is null until the page is actually saved.
 = 0.9.6 = 
 Tested with 3.0.. added post.php to array in init check
 = 0.9.5 =
