@@ -76,3 +76,15 @@ tr#multishow span {
 		color:#21759B;
 		cursor: pointer;
 }
+
+#pme_split {
+	width:98%;
+}
+#pme_split div.pme_left {
+	float:left;
+	width:70%;
+} 
+#pme_split div.pme_right {
+	margin-left:72%;
+	width:250px;
+}
