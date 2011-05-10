@@ -3,7 +3,7 @@ Contributors: joshua.strebel
 Tags: admin,formatting,pages,page,cms,multiedit, blocks, editable regions, tinymce, custom fields, page.ly
 Requires at least: 2.9
 Tested up to: 3.1.2
-Stable Tag: 0.9.8
+Stable Tag: 0.9.8.1
 
 MultiEdit adds tinyMCE editable "blocks" to WordPress custom page templates. 
 == Description ==
@@ -25,6 +25,8 @@ Follow [@strebel](http://twitter.com/strebel) and feel free to check out [Page.l
 
 # [Instructions here](http://blog.page.ly/multiedit-plugin/)
 == Changelog ==
+= 0.9.8.1 = 
+wp_enqueue_style and wp_enqueue_script.  #facepalm
 = 0.9.8 = 
 * tested with 3.1.2
 * commented out the print_r that shows the array of multi edit elements at the bottom of the admin screen.

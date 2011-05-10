@@ -3,7 +3,7 @@
 Plugin Name: Page.ly MultiEdit
 Plugin URI: http://blog.page.ly/multiedit-plugin
 Description: Multi-Editable Region Support for Page Templates. Brought to you by: <a href="http://page.ly">Page.ly WordPress Hosting</a>
-Version: 0.9.8
+Version: 0.9.8.1
 Author: joshua.strebel 
 Author URI: http://page.ly
 */
@@ -143,8 +143,12 @@ function multieditDisplay($index,$return = null) {
 
 
 function multieditAdminHeader() {
-	echo '<link rel="stylesheet" type="text/css" href="' . PLUGINASSETS .'/multiedit.css" />';	
-	echo '<script type="text/javascript" src="' .  PLUGINASSETS .'/multiedit.js" ></script>';	
+	 wp_register_style('multiedit_style',  PLUGINASSETS .'/multiedit.css');
+    wp_enqueue_style( 'multiedit_style');
+	 wp_register_script( 'multiedit_js', PLUGINASSETS .'/multiedit.js' );
+	 wp_enqueue_script( 'multiedit_js' );
+	//echo '<link rel="stylesheet" type="text/css" href="' . PLUGINASSETS .'/multiedit.css" />';	
+	//echo '<script type="text/javascript" src="' .  PLUGINASSETS .'/multiedit.js" ></script>';	
 }
 
 function drawMultieditHTML($meta,$presentregions) {
