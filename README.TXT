@@ -32,7 +32,7 @@ Follow [@strebel](http://twitter.com/strebel) and feel free to check out [Page.l
 * added support for shortcodes (ONLY TESTED WITH [gallery]) in multi-edit regions.  Thanks [Nick Ciske](http://wordpress.org/support/topic/plugin-pagely-multiedit-tab-not-renderign-shortcodes)
 * clean some mce tags from regions, thanks [inpixelitrust](http://wordpress.org/support/topic/plugin-pagely-multiedit-minor-errors)
 * added options page (with advert) to toggle shortcode usage. With shortcodes on it will apply filters to post data.. like displaying tweetmeme buttons.. again.
-* added a second param to multieditDisplay function for return, if true will return the value instead of echo. example: Assign content to $foo, <?php $foo = multieditDisplay('Right',true)?> then at some other time echo $foo <? echo $foo ?>
+* added a second param to multieditDisplay function for return, if true will return the value instead of echo. example: Assign content to $foo, `<?php $foo = multieditDisplay('Right',true)?>` then at some other time echo $foo `<? echo $foo ?>`
 * added a closing php ?> tag.. go figure.
 
 = 0.9.7 = 
