@@ -25,7 +25,7 @@ Follow [@strebel](http://twitter.com/strebel) and feel free to check out [Page.l
 
 # [Instructions here](http://blog.page.ly/multiedit-plugin/)
 == Changelog ==
-= 0.9.8.3
+= 0.9.8.3 =
 * proper plugins_url() usage, Hat tip: [Scott Cariss] (http://wordpress.org/support/topic/plugin-pagely-multiedit-plugin-assets-not-loading-from-https)
 * added global $post; to drawMultieditHTML function, Hat Tip [adamnbowen](http://wordpress.org/support/topic/undefined-post-variable)
 * Render underscores in Declared names as spaces, and Camelcase as normal case, Hat Tip [adamnbowen](http://wordpress.org/support/topic/feature-camelcase-and-underscores-to-spaces-in-admin)
