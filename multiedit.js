@@ -49,7 +49,7 @@ function initMultiEdit() {
 		
 		jQuery('table#list-table tbody').append('<tr id="multishow"><td class="left"><span>Show/Hide MultiEdit fields</span></td><td></td></tr>');
 		
-		jQuery('a#edButtonPreview, a#content-tmce').click(function(){
+		jQuery('a#edButtonPreview,a#content-tmce').click(function(){
 			jQuery('#multiEditControl span').show();
 			jQuery('#multiEditControl em').remove();
 		});
@@ -155,11 +155,23 @@ jQuery(document).ready( function() {
 	jQuery('form#post').submit( function() {	
 			// force tinymcs visual mode
 			jQuery('a#edButtonPreview').click();
+			jQuery('a#content-tmce').click();
+
  			// reverts tinymce back to default thereby saving and open tab
 			jQuery('span#default.multieditbutton').click();
 			// this clicks the update button (saves them) on the all custom fields
 			jQuery('#postcustomstuff input.updatemeta').click();
 		
+	});
+
+	jQuery('input#publish').click( function () {
+			// force tinymcs visual mode
+			jQuery('a#content-tmce').click();
+
+ 			// reverts tinymce back to default thereby saving and open tab
+			jQuery('span#default.multieditbutton').click();
+			// this clicks the update button (saves them) on the all custom fields
+			jQuery('#postcustomstuff input.updatemeta').click();
 	});
 	
 	// show or hide the multiedit custom field table rows
