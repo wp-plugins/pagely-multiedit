@@ -49,12 +49,12 @@ function initMultiEdit() {
 		
 		jQuery('table#list-table tbody').append('<tr id="multishow"><td class="left"><span>Show/Hide MultiEdit fields</span></td><td></td></tr>');
 		
-		jQuery('a#edButtonPreview').click(function(){
+		jQuery('a#edButtonPreview, a#content-tmce').click(function(){
 			jQuery('#multiEditControl span').show();
 			jQuery('#multiEditControl em').remove();
 		});
 	
-		jQuery('a#edButtonHTML').click(function(){
+		jQuery('a#edButtonHTML,a#content-html').click(function(){
 			jQuery('#multiEditControl span').hide();
 			jQuery('#multiEditControl').append('<em>Enable Visual Editing to use MultiEdit</em>');	
 		});
