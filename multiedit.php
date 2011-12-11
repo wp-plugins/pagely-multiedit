@@ -3,7 +3,7 @@
 Plugin Name: Page.ly MultiEdit
 Plugin URI: http://blog.page.ly/multiedit-plugin
 Description: Multi-Editable Region Support for Page Templates. Brought to you by: <a href="http://page.ly">Page.ly WordPress Hosting</a>
-Version: 0.9.8.2
+Version: 0.9.8.3
 Author: joshua.strebel 
 Author URI: http://page.ly
 */
@@ -40,7 +40,7 @@ Author URI: http://page.ly
 //error_reporting(E_ALL);
 //ini_set("display_errors", 1); 
  
-define ('PLUGINASSETS',WP_PLUGIN_URL.'/'.dirname(plugin_basename(__FILE__)).'');
+define ('PLUGINASSETS',plugins_url( '' , __FILE__ ));
 
 // plugin option screen
 add_action('admin_menu','me_options');
@@ -152,6 +152,7 @@ function multieditAdminHeader() {
 }
 
 function drawMultieditHTML($meta,$presentregions) {
+	global $post;
 	echo '<div id="multiEditControl"></div>';
 	echo '<div id="multiEditHidden"><span class="multieditbutton selected" id="default">Main Content</span>';
 
@@ -170,7 +171,12 @@ function drawMultieditHTML($meta,$presentregions) {
 					 $mval = trim($item['meta_value']);
 					 $mid = trim($item['meta_id']);
 					 $mclean = trim($matches[1]);
-					echo "<span class='multieditbutton $notactive' id='hs_$mkey' rel='$mid'>$mclean</span><input type='hidden' id='hs_$mkey' name='$mkey' value=\"".htmlspecialchars($mval).'" />';
+					 // CamelCase => Camel Case:
+           				 $mclean = preg_replace('/(?<=\\w)(?=[A-Z])/'," $1", $mclean);
+           				 // Underscores to Spaces:
+           				 $mclean = str_replace("_", " ", $mclean);
+					
+ 					 echo "<span class='multieditbutton $notactive' id='hs_$mkey' rel='$mid'>$mclean</span><input type='hidden' id='hs_$mkey' name='$mkey' value=\"".htmlspecialchars($mval).'" />';
 				
 				}
 			}
