@@ -10,20 +10,20 @@ MultiEdit adds tinyMCE editable "blocks" to WordPress custom page templates.
 
 One thing I always wished WP would do better is allow for multiple editable content blocks on page templates. This plugin uses custom fields to create simple tinyMCE editable regions on page templates. 
 
-See Instructions and Usage Examples here: [Page.ly MultiEdit plugin](http://blog.page.ly/multiedit-plugin/)
+See Instructions and Usage Examples here: [Page.ly MultiEdit plugin](http://blog.pagely.com/multiedit-plugin/)
 
 NOTE: Must be used inside/after the opening loop statement: 
 while (have_posts()) : the_post(); 
   multieditDisplay('YourBlockName'); 
 
-Brought to you by: [Page.ly WordPress Hosting](http://page.ly)
+Brought to you by: [Pagely WordPress Hosting](https://pagely.com)
 
-Follow [@strebel](http://twitter.com/strebel) and feel free to check out [Page.ly](http://page.ly)
+Follow [@strebel](http://twitter.com/strebel) and feel free to check out [Pagely](https://pagely.com)
 
 
 == Installation ==
 
-# [Instructions here](http://blog.page.ly/multiedit-plugin/)
+# [Instructions here](http://blog.pagely.com/multiedit-plugin/)
 == Changelog ==
 = 0.9.8.4 =
 Tested w/ 3.8
