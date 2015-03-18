@@ -2,15 +2,15 @@
 Contributors: joshua.strebel 
 Tags: admin,formatting,pages,page,cms,multiedit, blocks, editable regions, tinymce, custom fields, pagely, pods
 Requires at least: 2.9
-Tested up to: 3.8
-Stable Tag: 0.9.8.4
+Tested up to: 4.1.1
+Stable Tag: 0.9.8.5
 
 MultiEdit adds tinyMCE editable "blocks" to WordPress custom page templates. 
 == Description ==
 
 One thing I always wished WP would do better is allow for multiple editable content blocks on page templates. This plugin uses custom fields to create simple tinyMCE editable regions on page templates. 
 
-See Instructions and Usage Examples here: [Page.ly MultiEdit plugin](http://blog.pagely.com/multiedit-plugin/)
+See Instructions and Usage Examples here: [Page.ly MultiEdit plugin](https://pagely.com/multiedit-plugin/)
 
 NOTE: Must be used inside/after the opening loop statement: 
 while (have_posts()) : the_post(); 
@@ -23,8 +23,11 @@ Follow [@strebel](http://twitter.com/strebel) and feel free to check out [Pagely
 
 == Installation ==
 
-# [Instructions here](http://blog.pagely.com/multiedit-plugin/)
+# [Instructions here](https://pagely.com/multiedit-plugin/)
 == Changelog ==
+= 0.9.8.5 =
+Tested w/ 4.1.1 did some cleanup to make sure we save properly
+Hat tip: [rado.at] (https://wordpress.org/support/topic/change-request-tinymce-cleanup?replies=5)
 = 0.9.8.4 =
 Tested w/ 3.8
 = 0.9.8.3 =

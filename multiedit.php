@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Pagely MultiEdit
-Plugin URI: http://blog.pagely.com/multiedit-plugin
+Plugin URI: https://pagely.com/multiedit-plugin/
 Description: Multi-Editable Region Support for Page Templates. Brought to you by: <a href="http://pagely.com">Pagely WordPress Hosting</a>
-Version: 0.9.8.4
+Version: 0.9.8.5
 Author: joshua.strebel 
 Author URI: https://pagely.com/
 
@@ -15,7 +15,7 @@ Author URI: https://pagely.com/
 | Page.ly MultiEdit- Adds editable Blocks to page templates in       |
 | WordPress                                                          |
 | Copyright (C) 2010, Joshua Strebel,                                |
-| http://page.ly                                                     |
+| https://pagely.com                                                     |
 | All rights reserved.                                               |
 |                                                                    |
 | This program is free software; you can redistribute it and/or      |
@@ -45,7 +45,7 @@ define ('PLUGINASSETS',plugins_url( '' , __FILE__ ));
 add_action('admin_menu','me_options');
 
 function me_options() {
-	add_options_page( 'Page.ly Multi-Edit Options', 'Multi-Edit', 'manage_options', 'multiedit-options', 'me_options_page');
+	add_options_page( 'Pagely Multi-Edit Options', 'Pagely Multi-Edit', 'manage_options', 'multiedit-options', 'me_options_page');
 	multieditAdminHeader();
 
 	
@@ -73,7 +73,7 @@ function me_options_page() {
      }
 
 	echo '<div class="wrap">';
-	echo "<h2>" . __( 'Page.ly Multi-Edit Options' ) . "</h2>";
+	echo "<h2>" . __( 'Pagely Multi-Edit Options' ) . "</h2>";
 	?>
 		<div id="pme_split">
 
@@ -92,10 +92,11 @@ function me_options_page() {
 					</tr>
 				</table>
 				</form>
+				<hr/>
+				<h2>WordPress feeling slow?</h2>
+				<p>Try Pagely, The Most Scalable WordPress Hosting Platform In The World</p> <a href="https://pagely.com" target="_blank"><img src="<?php echo PLUGINASSETS?>/pagely_300x250_scales.png"/></a>
 			</div>
-			<div class="pme_right"><a href="http://page.ly" target="_blank"><img src="<?php echo PLUGINASSETS?>/pagely-plugin-ad.jpg"/></a></div>
-
-			<br style="clear:both"/>
+			
 		</div>
 	<?php 
 	echo '</div>';
@@ -142,17 +143,16 @@ function multieditDisplay($index,$return = null) {
 
 
 function multieditAdminHeader() {
-	 wp_register_style('multiedit_style',  PLUGINASSETS .'/multiedit.css');
+	 wp_register_style('multiedit_style',  PLUGINASSETS .'/multiedit.css?v=9.8.5');
     wp_enqueue_style( 'multiedit_style');
-	 wp_register_script( 'multiedit_js', PLUGINASSETS .'/multiedit.js' );
+	 wp_register_script( 'multiedit_js', PLUGINASSETS .'/multiedit.js?v=9.8.5' );
 	 wp_enqueue_script( 'multiedit_js' );
-	//echo '<link rel="stylesheet" type="text/css" href="' . PLUGINASSETS .'/multiedit.css" />';	
-	//echo '<script type="text/javascript" src="' .  PLUGINASSETS .'/multiedit.js" ></script>';	
+	
 }
 
 function drawMultieditHTML($meta,$presentregions) {
 	global $post;
-	echo '<div id="multiEditControl"></div>';
+	echo '<div id="multiEditControl"><a href="https://pagely.com/?mep" id="pagelylogo"><img width="100" height="28" src="'.PLUGINASSETS .'/pagely-logo.png"/></a></div>';
 	echo '<div id="multiEditHidden"><span class="multieditbutton selected" id="default">Main Content</span>';
 
 		
